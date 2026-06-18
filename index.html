@@ -11,7 +11,6 @@
       margin: 0;
       padding: 15px;
       color: #000;
-      background-image: linear-gradient(#f0f8ff, #e6f0fa);
     }
     .header {
       text-align: center;
@@ -19,7 +18,6 @@
       padding: 20px;
       border: 4px solid #003366;
       margin-bottom: 25px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .teacher {
       display: flex;
@@ -46,7 +44,6 @@
       border: 3px solid #003366;
       padding: 15px;
       min-height: 240px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
     .date {
       font-weight: bold;
@@ -85,7 +82,7 @@
 
   <script>
     const tasks = {
-      // === ИЮНЬ 2026 ===
+      // ИЮНЬ 2026
       "2026-06-01": "Вычислите\n6,29/0,85+(53+48,184):5,6",
       "2026-06-02": "Решите уравнение\n4x+5x+4,7=16,4",
       "2026-06-03": "В коробке лежат 14 шаров, из которых 5 синего цвета. Какую часть всех шаров составляют синие?",
@@ -98,10 +95,12 @@
       "2026-06-10": "В спортивном соревновании участвовали 72 школьника, среди которых 18 девочек. Во сколько раз число участников-мальчиков больше числа девочек?",
       "2026-06-11": "Автомобиль проезжает за 10 с. За какое время он проедет это же расстояние, если его скорость увеличится в 1,2 раза?",
       "2026-06-12": "Отдых!",
-      // Добавь остальные дни из твоих картинок сюда (Июль и Август)
-      // Пример:
-      "2026-07-01": "Вычислите площадь...",
-      // и т.д. для всех дней
+      "2026-06-13": "Вычислите площадь цилиндрической фигуры, если длина стороны квадрата равна 1 см",
+      "2026-06-14": "Приведите примеры предметов, имеющих форму цилиндра и конуса",
+      "2026-06-15": "В коробке лежат пять шаров красных и три шара синих. Какова вероятность того, что вынутый наугад шар окажется красным? Синим?",
+      "2026-06-16": "Найдите НОД 16 и 24; 45 и 56; 12, 18 и 24",
+      "2026-06-17": "Магазин продал 480 кг огурцов и помидоров, причём огурцов было 85% от массы проданных овощей. Сколько килограммов огурцов продали?",
+      "2026-06-18": "Вычислите\n9×13 + 9×2\n54×13"
     };
 
     const calendar = document.getElementById('calendar');
@@ -116,18 +115,12 @@
       
       const dayEl = document.createElement('div');
       dayEl.className = 'day';
-      
       const isUnlocked = date <= today;
-      
-      if (isUnlocked && tasks[dateStr]) {
+
+      if (isUnlocked) {
         dayEl.innerHTML = `
           <div class="date">${date.getDate()} ${date.toLocaleString('ru', {month: 'long'})} ${date.getFullYear()}</div>
-          <div class="task">${tasks[dateStr]}</div>
-        `;
-      } else if (isUnlocked) {
-        dayEl.innerHTML = `
-          <div class="date">${date.getDate()} ${date.toLocaleString('ru', {month: 'long'})} ${date.getFullYear()}</div>
-          <div class="task">Задание отсутствует</div>
+          <div class="task">${tasks[dateStr] || 'Задание отсутствует'}</div>
         `;
       } else {
         dayEl.classList.add('locked');
